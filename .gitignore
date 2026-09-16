@@ -1,0 +1,12 @@
+# Outils de dev locaux (chemins spécifiques à la machine)
+.claude/
+
+# Dépendances / build
+node_modules/
+.vercel/
+dist/
+
+# Système
+.DS_Store
+Thumbs.db
+*.log
