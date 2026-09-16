@@ -475,13 +475,40 @@ section{position:relative}
 .marquee:hover .marquee-track,.marquee:focus-within .marquee-track{animation-play-state:paused}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .tcard{flex:none;width:min(280px,78vw);height:380px;border-radius:16px;overflow:hidden;
-  border:1px solid rgba(255,255,255,.14);background:#1b1510;padding:0;cursor:zoom-in;position:relative;
-  box-shadow:var(--shadow)}
-.tcard img{width:100%;height:100%;object-fit:cover;object-position:top}
+  border:1px solid rgba(255,255,255,.14);padding:0;cursor:zoom-in;position:relative;box-shadow:var(--shadow);
+  background:linear-gradient(100deg,#1b1510 28%,#33261a 50%,#1b1510 72%);background-size:200% 100%;
+  animation:tShimmer 1.6s linear infinite}
+@keyframes tShimmer{to{background-position:-200% 0}}
+.tcard img{width:100%;height:100%;object-fit:cover;object-position:top;position:relative;z-index:1}
 .tcard .zoomtag{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.6);color:#fff;
   font-size:.72rem;font-weight:700;padding:.35em .7em;border-radius:999px;display:flex;align-items:center;gap:.35em;backdrop-filter:blur(3px)}
 .tcard .zoomtag svg{width:13px;height:13px}
 .testi .note{text-align:center;color:#b7a289;font-size:.88rem;margin-top:1.8rem}
+
+/* ===== Avis écrits ===== */
+.written-reviews .wr-head{text-align:center;max-width:56ch;margin:0 auto clamp(30px,4vw,46px)}
+.written-reviews h2{font-size:clamp(1.9rem,4.6vw,2.8rem);margin-bottom:.5rem}
+.written-reviews .sub{color:var(--ink-2)}
+.wr-marquee{position:relative;width:100vw;margin-left:calc(50% - 50vw);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.wr-track{display:flex;gap:18px;width:max-content;padding:6px 14px;align-items:stretch;
+  animation:scroll 80s linear infinite}
+.wr-marquee:hover .wr-track,.wr-marquee:focus-within .wr-track{animation-play-state:paused}
+.wr-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:9px;
+  flex:none;width:min(286px,76vw)}
+.wr-stars{color:var(--gold);letter-spacing:1px;font-size:.8rem}
+.wr-quote{color:var(--ink-2);font-size:.85rem;line-height:1.5;flex:1;margin:0}
+.wr-foot{display:flex;align-items:center;gap:9px;margin-top:2px;padding-top:11px;border-top:1px solid var(--line)}
+.wr-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(150deg,var(--clay),var(--clay-d));
+  color:#fff;display:grid;place-items:center;font-weight:800;font-size:.72rem;flex:none;letter-spacing:.02em}
+.wr-meta{min-width:0;line-height:1.2}
+.wr-name{font-weight:800;font-size:.82rem;color:var(--ink);display:block}
+.wr-loc{font-size:.7rem;color:var(--ink-3);display:flex;align-items:center;gap:.35em;margin-top:1px}
+.wr-flag{width:16px;height:12px;border-radius:2px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.written-reviews{padding-bottom:clamp(24px,4vw,40px)}
+.offer{padding-top:clamp(24px,4vw,40px)}
 
 /* Lightbox */
 .lightbox{position:fixed;inset:0;z-index:200;background:rgba(20,14,9,.9);
@@ -653,13 +680,14 @@ section{position:relative}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   .product-img{animation:none}
-  .marquee-track{animation:none;transform:none}
+  .marquee-track,.wr-track{animation:none;transform:none}
   .js .reveal{opacity:1;transform:none;transition:none}
   .js .hero-title .tline{animation:none;opacity:1;transform:none}
   .js .hero-title .hl{animation:none;background-size:100% 100%}
   .stage-fx .r2,.stage-fx .pulse,.float-pill{animation:none}
   .stage-fx .pulse{opacity:.3}
   .btn,.tcard,.acc-a,.sticky-cta{transition:none}
+  .tcard{animation:none}
   .buy-notif{transform:none!important;transition:opacity .3s ease;visibility:hidden}
   .buy-notif.show{visibility:visible}
 }
@@ -676,7 +704,7 @@ section{position:relative}
       </span>
       <span class="wm"><b>Locataire&nbsp;→&nbsp;Propriétaire</b><span>Le guide sans prêt</span></span>
     </a>
-    <a class="btn head-cta" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout" target="_blank" rel="noopener">Obtenir le guide</a>
+    <a class="btn head-cta" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout">Obtenir le guide</a>
   </div>
 </header>
 
@@ -715,7 +743,7 @@ section{position:relative}
       </div>
     </div>
 
-    <a class="btn btn-lg btn-cta-price reveal d3" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout" target="_blank" rel="noopener">
+    <a class="btn btn-lg btn-cta-price reveal d3" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout">
       <span class="cta-label">Je veux mon guide</span>
       <span class="cta-sep" aria-hidden="true"></span>
       <span class="cta-price">3&nbsp;889&nbsp;FCFA <s>23&nbsp;900</s></span>
@@ -728,7 +756,7 @@ section{position:relative}
         Cette offre expire dans
       </span>
       <span class="ht-clock">
-        <span class="ht-num js-cd-h">24</span><span class="ht-colon" aria-hidden="true">:</span><span class="ht-num js-cd-m">00</span><span class="ht-colon" aria-hidden="true">:</span><span class="ht-num js-cd-s">00</span>
+        <span class="ht-num js-cd-h">02</span><span class="ht-colon" aria-hidden="true">:</span><span class="ht-num js-cd-m">00</span><span class="ht-colon" aria-hidden="true">:</span><span class="ht-num js-cd-s">00</span>
       </span>
     </div>
 
@@ -1001,22 +1029,110 @@ section{position:relative}
   <div class="marquee" aria-label="Avis clients (défilement automatique, survole pour mettre en pause)">
     <div class="marquee-track" id="ttrack">
       <!-- Set 1 -->
-      <button class="tcard" type="button" data-full="https://i.ibb.co/pv53Rstt/Temoignage-1.png" aria-label="Agrandir l'avis client 1"><img src="https://i.ibb.co/pv53Rstt/Temoignage-1.png" alt="Avis client 1 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/cXK34my5/Temoignage-2.png" aria-label="Agrandir l'avis client 2"><img src="https://i.ibb.co/cXK34my5/Temoignage-2.png" alt="Avis client 2 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/205C0g9F/Temoignage-3.png" aria-label="Agrandir l'avis client 3"><img src="https://i.ibb.co/205C0g9F/Temoignage-3.png" alt="Avis client 3 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/vv16yHTs/Temoignage-4.png" aria-label="Agrandir l'avis client 4"><img src="https://i.ibb.co/vv16yHTs/Temoignage-4.png" alt="Avis client 4 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/3Yc8xJ5D/Temoignage-5.png" aria-label="Agrandir l'avis client 5"><img src="https://i.ibb.co/3Yc8xJ5D/Temoignage-5.png" alt="Avis client 5 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/chWQgdNP/Temoignage-6.png" aria-label="Agrandir l'avis client 6"><img src="https://i.ibb.co/chWQgdNP/Temoignage-6.png" alt="Avis client 6 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/pv53Rstt/Temoignage-1.png" aria-label="Agrandir l'avis client 1"><img src="https://images.weserv.nl/?url=i.ibb.co/pv53Rstt/Temoignage-1.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="Avis client 1 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/cXK34my5/Temoignage-2.png" aria-label="Agrandir l'avis client 2"><img src="https://images.weserv.nl/?url=i.ibb.co/cXK34my5/Temoignage-2.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="Avis client 2 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/205C0g9F/Temoignage-3.png" aria-label="Agrandir l'avis client 3"><img src="https://images.weserv.nl/?url=i.ibb.co/205C0g9F/Temoignage-3.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="Avis client 3 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/vv16yHTs/Temoignage-4.png" aria-label="Agrandir l'avis client 4"><img src="https://images.weserv.nl/?url=i.ibb.co/vv16yHTs/Temoignage-4.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="Avis client 4 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/3Yc8xJ5D/Temoignage-5.png" aria-label="Agrandir l'avis client 5"><img src="https://images.weserv.nl/?url=i.ibb.co/3Yc8xJ5D/Temoignage-5.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="Avis client 5 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/chWQgdNP/Temoignage-6.png" aria-label="Agrandir l'avis client 6"><img src="https://images.weserv.nl/?url=i.ibb.co/chWQgdNP/Temoignage-6.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="Avis client 6 sur le guide De Locataire à Propriétaire" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
       <!-- Set 2 (duplicate for seamless loop) -->
-      <button class="tcard" type="button" data-full="https://i.ibb.co/pv53Rstt/Temoignage-1.png" aria-hidden="true" tabindex="-1"><img src="https://i.ibb.co/pv53Rstt/Temoignage-1.png" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/cXK34my5/Temoignage-2.png" aria-hidden="true" tabindex="-1"><img src="https://i.ibb.co/cXK34my5/Temoignage-2.png" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/205C0g9F/Temoignage-3.png" aria-hidden="true" tabindex="-1"><img src="https://i.ibb.co/205C0g9F/Temoignage-3.png" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/vv16yHTs/Temoignage-4.png" aria-hidden="true" tabindex="-1"><img src="https://i.ibb.co/vv16yHTs/Temoignage-4.png" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/3Yc8xJ5D/Temoignage-5.png" aria-hidden="true" tabindex="-1"><img src="https://i.ibb.co/3Yc8xJ5D/Temoignage-5.png" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
-      <button class="tcard" type="button" data-full="https://i.ibb.co/chWQgdNP/Temoignage-6.png" aria-hidden="true" tabindex="-1"><img src="https://i.ibb.co/chWQgdNP/Temoignage-6.png" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/pv53Rstt/Temoignage-1.png" aria-hidden="true" tabindex="-1"><img src="https://images.weserv.nl/?url=i.ibb.co/pv53Rstt/Temoignage-1.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/cXK34my5/Temoignage-2.png" aria-hidden="true" tabindex="-1"><img src="https://images.weserv.nl/?url=i.ibb.co/cXK34my5/Temoignage-2.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/205C0g9F/Temoignage-3.png" aria-hidden="true" tabindex="-1"><img src="https://images.weserv.nl/?url=i.ibb.co/205C0g9F/Temoignage-3.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/vv16yHTs/Temoignage-4.png" aria-hidden="true" tabindex="-1"><img src="https://images.weserv.nl/?url=i.ibb.co/vv16yHTs/Temoignage-4.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/3Yc8xJ5D/Temoignage-5.png" aria-hidden="true" tabindex="-1"><img src="https://images.weserv.nl/?url=i.ibb.co/3Yc8xJ5D/Temoignage-5.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
+      <button class="tcard" type="button" data-full="https://i.ibb.co/chWQgdNP/Temoignage-6.png" aria-hidden="true" tabindex="-1"><img src="https://images.weserv.nl/?url=i.ibb.co/chWQgdNP/Temoignage-6.png&amp;w=560&amp;q=78&amp;output=webp" decoding="async" width="280" height="380" alt="" loading="lazy"><span class="zoomtag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>Agrandir</span></button>
     </div>
   </div>
   <p class="note wrap">Avis réels de lecteurs, capturés depuis leurs messages. Clique sur un avis pour l'agrandir.</p>
+</section>
+
+<!-- ================= AVIS ÉCRITS ================= -->
+<section class="written-reviews sec">
+  <div class="wrap">
+    <div class="wr-head">
+      <span class="eyebrow center reveal">Avis de lecteurs</span>
+      <h2 class="reveal d1">Ils vous en parlent aussi</h2>
+      <p class="sub reveal d2">D'autres retours de lecteurs qui ont commencé à préparer leur projet grâce au guide.</p>
+    </div>
+    <div class="wr-marquee" aria-label="Avis écrits de lecteurs (défilement automatique, survole pour mettre en pause)">
+      <div class="wr-track" id="wrTrack">
+
+      <article class="wr-card">
+        <div class="wr-stars" aria-label="Noté 5 sur 5">★★★★★</div>
+        <p class="wr-quote">« Franchement, je pensais que construire ma maison était encore très loin pour moi. Le guide m'a surtout aidé à comprendre par où commencer et comment mieux organiser mon argent. »</p>
+        <div class="wr-foot">
+          <span class="wr-av" aria-hidden="true">KA</span>
+          <div class="wr-meta"><span class="wr-name">Koffi A.</span><span class="wr-loc"><img class="wr-flag" src="https://flagcdn.com/w40/tg.png" alt="" width="16" height="12" loading="lazy">Togo</span></div>
+        </div>
+      </article>
+
+      <article class="wr-card">
+        <div class="wr-stars" aria-label="Noté 5 sur 5">★★★★★</div>
+        <p class="wr-quote">« J'ai beaucoup aimé la partie sur le budget. Les explications sont simples et on comprend vraiment les différentes étapes avant de se lancer dans la construction. »</p>
+        <div class="wr-foot">
+          <span class="wr-av" aria-hidden="true">NB</span>
+          <div class="wr-meta"><span class="wr-name">Nathalie B.</span><span class="wr-loc"><img class="wr-flag" src="https://flagcdn.com/w40/ci.png" alt="" width="16" height="12" loading="lazy">Côte d'Ivoire</span></div>
+        </div>
+      </article>
+
+      <article class="wr-card">
+        <div class="wr-stars" aria-label="Noté 5 sur 5">★★★★★</div>
+        <p class="wr-quote">« Très bon guide. Il y a plusieurs conseils auxquels je n'avais jamais pensé, surtout concernant le terrain et les dépenses à prévoir. Ça m'a permis de mieux préparer mon projet. »</p>
+        <div class="wr-foot">
+          <span class="wr-av" aria-hidden="true">YK</span>
+          <div class="wr-meta"><span class="wr-name">Yao Kouadio</span><span class="wr-loc"><img class="wr-flag" src="https://flagcdn.com/w40/ci.png" alt="" width="16" height="12" loading="lazy">Côte d'Ivoire</span></div>
+        </div>
+      </article>
+
+      <article class="wr-card">
+        <div class="wr-stars" aria-label="Noté 5 sur 5">★★★★★</div>
+        <p class="wr-quote">« Je viens de terminer le guide et franchement c'est très intéressant. Ce que j'ai apprécié, c'est que les conseils sont adaptés à notre réalité africaine. »</p>
+        <div class="wr-foot">
+          <span class="wr-av" aria-hidden="true">EA</span>
+          <div class="wr-meta"><span class="wr-name">Esther Amoussou</span><span class="wr-loc"><img class="wr-flag" src="https://flagcdn.com/w40/bj.png" alt="" width="16" height="12" loading="lazy">Bénin</span></div>
+        </div>
+      </article>
+
+      <article class="wr-card">
+        <div class="wr-stars" aria-label="Noté 5 sur 5">★★★★★</div>
+        <p class="wr-quote">« Avant je ne savais même pas comment commencer à économiser pour construire. Maintenant j'ai une idée plus claire des étapes à suivre. Merci pour ce contenu. »</p>
+        <div class="wr-foot">
+          <span class="wr-av" aria-hidden="true">LT</span>
+          <div class="wr-meta"><span class="wr-name">Landry T.</span><span class="wr-loc"><img class="wr-flag" src="https://flagcdn.com/w40/cg.png" alt="" width="16" height="12" loading="lazy">Congo</span></div>
+        </div>
+      </article>
+
+      <article class="wr-card">
+        <div class="wr-stars" aria-label="Noté 5 sur 5">★★★★★</div>
+        <p class="wr-quote">« Guide très pratique. J'ai surtout aimé les exemples parce qu'ils permettent de mieux comprendre comment passer de l'idée à un vrai projet. Je recommande. »</p>
+        <div class="wr-foot">
+          <span class="wr-av" aria-hidden="true">GN</span>
+          <div class="wr-meta"><span class="wr-name">Grâce N'Guessan</span><span class="wr-loc"><img class="wr-flag" src="https://flagcdn.com/w40/ml.png" alt="" width="16" height="12" loading="lazy">Mali</span></div>
+        </div>
+      </article>
+
+      <article class="wr-card">
+        <div class="wr-stars" aria-label="Noté 5 sur 5">★★★★★</div>
+        <p class="wr-quote">« Ça faisait longtemps que je voulais construire mais je repoussais toujours. Le guide m'a permis de mettre mes idées dans l'ordre et de commencer à réfléchir sérieusement au projet. »</p>
+        <div class="wr-foot">
+          <span class="wr-av" aria-hidden="true">PA</span>
+          <div class="wr-meta"><span class="wr-name">Patrick Ayivi</span><span class="wr-loc"><img class="wr-flag" src="https://flagcdn.com/w40/tg.png" alt="" width="16" height="12" loading="lazy">Togo</span></div>
+        </div>
+      </article>
+
+      <article class="wr-card">
+        <div class="wr-stars" aria-label="Noté 5 sur 5">★★★★★</div>
+        <p class="wr-quote">« Contenu simple, bien expliqué et facile à suivre. J'ai appris plusieurs choses que je ne connaissais pas sur la préparation d'un projet de construction. Très utile. »</p>
+        <div class="wr-foot">
+          <span class="wr-av" aria-hidden="true">M</span>
+          <div class="wr-meta"><span class="wr-name">Mireille</span><span class="wr-loc"><img class="wr-flag" src="https://flagcdn.com/w40/ml.png" alt="" width="16" height="12" loading="lazy">Mali</span></div>
+        </div>
+      </article>
+
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ================= OFFRE ================= -->
@@ -1055,7 +1171,7 @@ section{position:relative}
           <div class="was">Valeur totale : <s>23 900 FCFA</s> <span style="color:var(--ink-3)">+ 27 800 FCFA de bonus offerts</span></div>
           <div class="now">3 889 <small>FCFA</small></div>
           <span class="save">Tu économises 20 011 FCFA — soit −84%</span>
-          <a class="btn btn-lg btn-block" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout" target="_blank" rel="noopener">Obtenir le guide + les bonus <span class="arw" aria-hidden="true">→</span></a>
+          <a class="btn btn-lg btn-block" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout">Obtenir le guide + les bonus <span class="arw" aria-hidden="true">→</span></a>
           <div class="pay-note">
             <span class="mm">Paiement Mobile Money</span>
             <span>Wave · Orange Money · MTN · Moov</span>
@@ -1093,7 +1209,7 @@ section{position:relative}
     <p class="u-sub reveal d2">Le tarif de lancement remonte progressivement à mesure que plus de personnes rejoignent la méthode. Bloque ton prix maintenant.</p>
 
     <div class="timer reveal d2" aria-label="Compte à rebours de l'offre">
-      <div class="tbox"><div class="n js-cd-h">24</div><div class="l">Heures</div></div>
+      <div class="tbox"><div class="n js-cd-h">02</div><div class="l">Heures</div></div>
       <div class="tbox"><div class="n js-cd-m">00</div><div class="l">Minutes</div></div>
       <div class="tbox"><div class="n js-cd-s">00</div><div class="l">Secondes</div></div>
     </div>
@@ -1104,7 +1220,7 @@ section{position:relative}
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>Les 3 bonus sont inclus uniquement pendant la période de lancement.</li>
     </ul>
 
-    <a class="btn btn-gold btn-lg reveal d3" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout" target="_blank" rel="noopener">Bloquer mon prix maintenant <span class="arw" aria-hidden="true">→</span></a>
+    <a class="btn btn-gold btn-lg reveal d3" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout">Bloquer mon prix maintenant <span class="arw" aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -1166,7 +1282,7 @@ section{position:relative}
     <h2 class="reveal d1">Ta maison ne se construira pas toute seule. Mais tu peux poser la première brique aujourd'hui.</h2>
     <p class="reveal d2">Arrête de bâtir la maison de quelqu'un d'autre. Prends la méthode claire, commence avec ce que tu as déjà, et avance étape par étape jusqu'à tes propres clés.</p>
     <p class="price-line reveal d2"><s>23 900 FCFA</s> &nbsp; <b>3 889 FCFA</b> <span style="font-size:1rem">aujourd'hui</span></p>
-    <a class="btn btn-lg reveal d3" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout" target="_blank" rel="noopener">Je deviens propriétaire <span class="arw" aria-hidden="true">→</span></a>
+    <a class="btn btn-lg reveal d3" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout">Je deviens propriétaire <span class="arw" aria-hidden="true">→</span></a>
     <div class="reassure-line reveal d3">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Garantie 7 jours</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Remboursé en 48h</span>
@@ -1188,7 +1304,7 @@ section{position:relative}
       </div>
       <nav class="foot-links" aria-label="Liens de bas de page">
         <a href="#offre">L'offre</a>
-        <a href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout" target="_blank" rel="noopener">Obtenir le guide</a>
+        <a href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout">Obtenir le guide</a>
         <a href="#top">Haut de page</a>
       </nav>
     </div>
@@ -1202,7 +1318,7 @@ section{position:relative}
 <!-- ================= STICKY MOBILE CTA ================= -->
 <div class="sticky-cta" id="stickyCta" aria-hidden="true">
   <div class="pr"><b>3 889 FCFA</b><s>au lieu de 23 900</s></div>
-  <a class="btn" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout" target="_blank" rel="noopener">Obtenir le guide</a>
+  <a class="btn" href="https://nwgetgqb.mychariow.com/prd_ftbgvucp/checkout">Obtenir le guide</a>
 </div>
 
 <!-- ================= LIGHTBOX ================= -->
@@ -1265,12 +1381,12 @@ section{position:relative}
   });
 
   /* Compte à rebours 24h persistant (localStorage, reset chaque cycle) */
-  var KEY = 'dlp_deadline';
+  var KEY = 'dlp_deadline_2h';
   function getDeadline(){
     var now = Date.now(), d = 0;
     try { d = parseInt(localStorage.getItem(KEY), 10); } catch(e){}
     if(!d || isNaN(d) || d <= now){
-      d = now + 24*60*60*1000;
+      d = now + 2*60*60*1000;
       try { localStorage.setItem(KEY, String(d)); } catch(e){}
     }
     return d;
@@ -1390,6 +1506,16 @@ section{position:relative}
 </script>
 
 <script>
+(function(){
+  // Duplique les avis écrits pour un défilement en boucle fluide
+  var t = document.getElementById('wrTrack');
+  if(t){
+    var tmp = document.createElement('div');
+    tmp.innerHTML = t.innerHTML;
+    Array.prototype.forEach.call(tmp.children, function(c){ c.setAttribute('aria-hidden','true'); });
+    t.insertAdjacentHTML('beforeend', tmp.innerHTML);
+  }
+})();
 (function(){
   var v = document.getElementById('previewVideo');
   if(!v) return;
