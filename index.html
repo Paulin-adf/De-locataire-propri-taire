@@ -115,7 +115,7 @@ src="https://www.facebook.com/tr?id=1735536870865844&ev=PageView&noscript=1"
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
 body{
   margin:0;
   font-family:var(--sans);
@@ -1355,7 +1355,7 @@ section{position:relative}
 <!-- ================= LIGHTBOX ================= -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Avis client agrandi">
   <button class="close" id="lbClose" aria-label="Fermer">✕</button>
-  <img id="lbImg" src="" alt="Avis client agrandi">
+  <img id="lbImg" alt="Avis client agrandi">
 </div>
 
 <!-- ================= NOTIFICATIONS D'ACHAT ================= -->
@@ -1366,7 +1366,7 @@ section{position:relative}
   </div>
   <div class="bn-body">
     <p class="bn-line1"><strong class="bn-name"></strong> vient d'acheter <span class="bn-prod">« De Locataire à Propriétaire »</span></p>
-    <p class="bn-line2"><img class="bn-flag" src="" alt="" width="20" height="15" loading="lazy" decoding="async"><span class="bn-country"></span> · <span class="bn-time"></span></p>
+    <p class="bn-line2"><img class="bn-flag" alt="" width="20" height="15" loading="lazy" decoding="async"><span class="bn-country"></span> · <span class="bn-time"></span></p>
   </div>
   <button class="bn-close" type="button" aria-label="Fermer la notification">✕</button>
 </div>
@@ -1411,7 +1411,7 @@ section{position:relative}
     window.addEventListener('resize', function(){ if(item.open) setH(); });
   });
 
-  /* Compte à rebours 24h persistant (localStorage, reset chaque cycle) */
+  /* Compte à rebours 2h persistant (localStorage, reset chaque cycle) */
   var KEY = 'dlp_deadline_2h';
   function getDeadline(){
     var now = Date.now(), d = 0;
@@ -1468,7 +1468,7 @@ section{position:relative}
     lbClose.focus();
   }
   function closeLb(){
-    lb.classList.remove('open'); lbImg.src='';
+    lb.classList.remove('open'); lbImg.removeAttribute('src');
     document.body.style.overflow = '';
     if(lastFocus && lastFocus.focus) lastFocus.focus();
   }
